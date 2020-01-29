@@ -4,7 +4,7 @@
 import requests
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from datetime import datetime,timedelta
 
 def monitor():
     r = requests.get('https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts&callback=&_=')
@@ -21,7 +21,7 @@ def monitor():
     cn = df[df.country == '中国']
 
 
-    now = datetime.now()
+    now = datetime.now()+timedelta(hours=8)
     current_time = now.strftime("%Y%m%d_%H%M")
     df.to_excel('virus/'+current_time+'.xlsx')
 
